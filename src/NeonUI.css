@@ -1,5 +1,5 @@
 /* 
-    NeonUI Preview v0.5
+    NeonUI Preview v0.51
     This is the developement version. Use the Minified version in your app.
 */
 
@@ -101,13 +101,13 @@ body {background-color: var(--AppBackground);}
 /* Check if browser supports blur */
 @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
     .LightMode {
-        --BlurBrush1: rgba(255, 255, 255, 0.4);
-        --BlurBrush2: rgba(255, 255, 255, 0.6);
+        --BlurBrush1: rgba(255, 255, 255, 0.6);
+        --BlurBrush2: rgba(255, 255, 255, 0.7);
         --BlurBrush3: rgba(255, 255, 255, 0.8);
     }
     .DarkMode {
-        --BlurBrush1: rgba(0, 0, 0, 0.4);
-        --BlurBrush2: rgba(0, 0, 0, 0.6);
+        --BlurBrush1: rgba(0, 0, 0, 0.6);
+        --BlurBrush2: rgba(0, 0, 0, 0.7);
         --BlurBrush3: rgba(0, 0, 0, 0.8);
     }
 }
@@ -125,16 +125,16 @@ body {background-color: var(--AppBackground);}
 
 /* Custom fonts */
 @font-face {
-    font-family: "Work Sans";
-    src: url(Fonts/WorkSans.woff);
+    font-family: "FluentSystemIcons-Regular";
+    src: url(Fonts/FluentSystemIcons-Regular.ttf);
 }
 @font-face {
     font-family: "Inter";
     src: url(Fonts/Inter.woff);
 }
 @font-face {
-    font-family: "FluentSystemIcons-Regular";
-    src: url(Fonts/FluentSystemIcons-Regular.ttf);
+    font-family: "Work Sans";
+    src: url(Fonts/WorkSans.woff);
 }
 @font-face {
     font-family: "FluentSystemIcons-Filled";
@@ -191,6 +191,7 @@ button, .btn, a {
     justify-content: center;
     align-items: center;
     width: fit-content;
+    height: fit-content;
     gap: 8px;
     background: var(--ControlBase1);
     border: 1.5px solid var(--Border1);
@@ -205,7 +206,6 @@ button:active, .btn:active{transform: scale(0.95);}
 .iconButton {
     border: none;
     background-color: transparent;
-    color: var(--Base);
     padding: 12px;
 }
 .linkButton, a {
@@ -289,7 +289,7 @@ main {
     border-radius: var(--RoundCorner2);
     padding: 8px 12px;
     transition: box-shadow 0.3s, background-color 0.2s;
-    gap: 4px;
+    gap: 8px;
     border: 1.5px solid var(--ControlBase2);
 }
 .Chip:hover, .chipSelected:hover {box-shadow: var(--ShadowLight);}
@@ -343,12 +343,12 @@ main {
     border-radius: var(--RoundCorner2);
     box-shadow: var(--ShadowMedium);
     background-color: var(--BlurBrush2);
-    backdrop-filter: var(--Blur);
+    backdrop-filter: var(--BlurLight);
     z-index: 4;
     padding: 4px;
     border: 0;
 }
-.contextMenuItem{
+.contextMenu ul li {
     display: flex;
     flex-direction: row;
     text-align: left;
@@ -360,11 +360,11 @@ main {
     gap: 8px;
     border-radius: var(--RoundCorner1);
 }
-.contextMenuItem img {
+.contextMenu ul li img{
     width: 16px;
     height: 16px;
 }
-.contextMenuItem:hover{background-color: var(--ControlBase3);}
+.contextMenu ul li:hover{background-color: var(--ControlBase3);}
 .contextMenuShortcut {
     position: absolute;
     right: 8px;
@@ -374,11 +374,12 @@ main {
 /* Card */
 .Card {
     display: flex;
-    background-color: var(--ControlBase1);
+    background-color: var(--BlurBrush2);
     border: 1.5px solid var(--Border1);
     border-radius: var(--RoundCorner2);
     padding: 16px 8px;
     backdrop-filter: var(--BlurLight);
+    transition: box-shadow 0.3s;
 }
 .Card:hover {
     background-color: var(--Alt);
@@ -479,7 +480,7 @@ main {
 }
 
 /* Banners */
-.banner {
+.Banner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -489,12 +490,6 @@ main {
     background-color: var(--ControlBase3);
     border-radius: var(--RoundCorner2);
 }
-.bannerLeft {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-}
 
 /* Slider */
 .slider {
@@ -503,8 +498,8 @@ main {
     height: 4px;
     background: var(--ControlBase3);
     outline: none;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+    border-radius: var(--RoundCorner1);
+    margin-top: -4px;
 }
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -530,7 +525,17 @@ main {
     transition: border 0.1s linear;
 }
 .slider::-moz-range-thumb:hover {border: var(--AccentColor) 5px solid;}
-
+.sliderContainer {
+    position: relative;
+}
+.sliderContainer::before {
+    display: block;
+    height: 4px;
+    width: var(--SliderValue);
+    background-color: var(--AccentColor);
+    content: '';
+    border-radius: var(--RoundCorner1);
+}
 /* Progress controls */
 .progressBar {
     height: 4px;
@@ -561,7 +566,7 @@ Neon-ProgressRing svg {
 }
 
 /* Accordions */
-.accordion {
+.accordion, .accordionExpanded, .accordionCollapsed {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -610,7 +615,7 @@ Neon-ProgressRing svg {
 .tooltipParent {position: relative;}
 .tooltipParent:hover .tooltip {
     display: block;
-    animation: fade-in 0.15s both;
+    animation: fade-in 0.3s both;
 }
 .tooltipParent:active .tooltip {display: none;}
 
@@ -619,11 +624,11 @@ Neon-ProgressRing svg {
     display: flex;
     position: absolute;
     bottom: 0;
-    background-color: var(--BlurBrush2);
+    background-color: var(--BlurBrush3);
     min-height: 32px;
     height: auto;
     width: 50vw;
-    border-radius: 12px 12px 0px 0px;
+    border-radius: var(--RoundCorner3) var(--RoundCorner3) 0px 0px;
     flex-direction: column;
     box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.16);
     backdrop-filter: var(--Blur);
@@ -657,7 +662,7 @@ Neon-ProgressRing svg {
 /*    Navigation    */
 
 /* Side Nav */
-.NavView {
+.NavViewExpanded, .NavViewCollapsed {
     display: flex;
     flex-direction: column;
     background-color: var(--Alt);
@@ -668,7 +673,7 @@ Neon-ProgressRing svg {
 }
 .NavViewExpanded {width: 256px;}
 .NavViewCollapsed {width: 48px;}
-.NavView button {padding: 10px;}
+.NavViewExpanded button, .NavViewCollapsed button {padding: 10px;}
 .NavItemBottom {margin-top: auto;}
 .NavViewItem, .NavViewItemSelected {
     display: flex;
@@ -776,7 +781,6 @@ code, .code {
 
 .hidden {display: none;}
 head {display: none;}
-
 /* 
    If you want to develop for dual screen devices and want to
    display 2 separate layouts on the displays, create a new div
@@ -786,6 +790,11 @@ head {display: none;}
     height: 100vh;
     width: 50vw;
 }
+/* Resizable content */
+.resize, .resizeX, .resizeY {overflow: hidden !important;}
+.resize {resize: both;}
+.resizeX {resize: horizontal;}
+.resizeY {resize: vertical;}
 
 /*    Dark Mode    */
 .DarkMode .accentButton, .DarkMode .chipSelected {
@@ -803,8 +812,7 @@ head {display: none;}
 }
 .shine::after {
     position: absolute;
-    background: linear-gradient(288.82deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.02%, rgba(255, 255, 255, 0.3) 38.02%, rgba(255, 255, 255, 0.3) 74.33%, rgba(255, 255, 255, 0) 74.33%, rgba(0, 0, 0, 0) 100%);
-    width: 100%;
+    background: linear-gradient(288.82deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38%, var(--ControlBase3) 38%, var(--ControlBase3) 75%, var(--ControlBase3) 75%, rgba(0, 0, 0, 0) 100%);    width: 100%;
     height: 100%;
     top: 0; left: 0;
     animation: shine 2s infinite;
@@ -856,6 +864,14 @@ head {display: none;}
       opacity: 1;
     }
 }
+@keyframes scale-in-center {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
 @keyframes fade-in {
     0% {opacity: 0;}
     100% {opacity: 1;}
@@ -877,15 +893,10 @@ head {display: none;}
 
 /* Phones */
 @media (max-width: 480px){
-    .sheet {
-        width: 100%;
-    }
-    .BottomNavItem {
-        flex-direction: column;
-    }
-    .snackbarParent {
-        width: 100vw;
-    }
+    .BottomNavItem {flex-direction: column;}
+    .sheet {width: 100%;}
+    .snackbarParent {width: 100vw;}
+    .NavViewExpanded {position: fixed;}
 }
 /* Dual screen devices in landscape */
 @media (horizontal-viewport-segments: 2) {

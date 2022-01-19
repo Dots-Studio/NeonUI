@@ -9,14 +9,14 @@ function AttachContextMenu(element, id) {
   let contextMenuID = document.getElementById(id);
 
   contextMenuElement.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    contextMenuID.style.display = 'flex'
-    contextMenuID.style.top = e.pageY + 'px'
-    contextMenuID.style.left = e.pageX + 'px'
+      e.preventDefault();
+      contextMenuID.style.display = 'flex'
+      contextMenuID.style.top = e.pageY + 'px'
+      contextMenuID.style.left = e.pageX + 'px'
   }, false);
 
   document.addEventListener('click', function(e) {
-    contextMenuID.style.display = 'none'
+      contextMenuID.style.display = 'none'
   }, false);
 }
 
@@ -27,56 +27,56 @@ function generatePalette(theme) {
   let values;
   //Values for generating colors, based on the theme
   if(theme == 'Light') {
-     values = [{
+      values = [{
       name: 'AccentColorLight',
       theme: 'LightMode',
       value: 10
-    },
-    {
+      },
+      {
       name: 'AccentColor',
       theme: 'LightMode',
       value: 0
-    },
-    {
+      },
+      {
       name: 'AccentColorDark',
       theme: 'LightMode',
       value: -10
-    }]
+      }]
   }
   else {
-    values = [{
+      values = [{
       name: 'AccentColorLight',
       theme: 'DarkMode',
       value: 40
-    },
-    {
+      },
+      {
       name: 'AccentColor',
       theme: 'DarkMode',
       value: 30
-    },
-    {
+      },
+      {
       name: 'AccentColorDark',
       theme: 'DarkMode',
       value: 0
-    }]
+      }]
   }
   values.forEach(function (e) {
-    //Turn the accent color into an array
-    var HSLArray = AccentColor.split(',');
-    //Copy the array and remove everything from it except the last value
-    var Light = Array.from(HSLArray).splice(2, 1).toString();
-    //Remove the %) and space at the beginning
-    Light = Light.slice(0, -2);
-    Light = Light.substring(1);
+      //Turn the accent color into an array
+      var HSLArray = AccentColor.split(',');
+      //Copy the array and remove everything from it except the last value
+      var Light = Array.from(HSLArray).splice(2, 1).toString();
+      //Remove the %) and space at the beginning
+      Light = Light.slice(0, -2);
+      Light = Light.substring(1);
       //Convert light to a number
       let LightNumber = Number(Light)
       LightNumber+=e.value //Add the value
       //Make the sure light is less than 100%
       if(LightNumber >= 100) {
-        LightNumber = 100
+          LightNumber = 100
       }
       if(LightNumber <= 0) {
-        LightNumber = 0
+          LightNumber = 0
       }
       //Update Light with the new number and add %) back
       Light = LightNumber.toString()+'%)'
@@ -91,59 +91,56 @@ function generatePalette(theme) {
 
 function toggleTheme(theme) {
   switch(theme) {
-    case 'Light':
-      set('LightMode')
-    break;
-    case 'Dark':
-      set()
-    break;
-    case 'Switch':
+      case 'Light':
+          set('LightMode')
+      break;
+      case 'Dark':
+          set()
+      break;
+      case 'Switch':
       if(document.body.classList.contains('LightMode')) {
-        set()
+          set()
       }
       else {
-        set('LightMode')
+          set('LightMode')
       }
-    break;
-    case undefined:
+      break;
+      case undefined:
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
       if (systemTheme.matches) {
-        set()
+          set()
       }
       else {
-        set('LightMode')
+          set('LightMode')
       }
-    break
+      break
   }
   function set(mode) {
-    //Generate an array from the classes
-    let classArray = Array.from(document.body.classList)
-    classArray.splice(0, 1)
-    generatePalette('Light')
 
-    if(mode == 'LightMode') {
+      //Generate an array from the classes
+      let classArray = Array.from(document.body.classList)
+      classArray.splice(0, 1)
+      generatePalette('Light')
+
+      if(mode == 'LightMode') {
       classArray.unshift('LightMode')
       generatePalette('Light')
-    }
-    else {
+      }
+      else {
       classArray.unshift('DarkMode')
       generatePalette()
-  }
+      }
 
-    //Turn classes into a string
-    let classes = classArray.join(' ');
-    document.body.setAttribute('class', classes)
+      //Turn classes into a string
+      let classes = classArray.join(' ');
+      document.body.setAttribute('class', classes)
   }
 }
 function toggleClass(element, class1, class2) {
   let classArray = Array.from(document.querySelector(element).classList)
-  classArray.splice(1, 1)
-  if(document.querySelector(element).classList.contains(class1)) {
-    classArray.push(class2)
-  }
-  else {
-    classArray.push(class1)
-  }
+  classArray.splice(0, 1)
+  if(document.querySelector(element).classList.contains(class1)) {classArray.push(class2)}
+  else {classArray.push(class1)}
   //Turn classes into a string
   let classes = classArray.join(' ');
   document.querySelector(element).setAttribute('class', classes)
@@ -159,10 +156,10 @@ function generateSnackbar(content, buttonText, buttonID) {
   document.querySelector('.snackbarParent').appendChild(snackbar)
   snackbar.querySelector('button').setAttribute('id', buttonID)
   snackbar.onanimationend = function() {
-    snackbar.style.animation="snackbarDisappear 0.3s 8s forwards";
-    snackbar.onanimationend = function() {
+      snackbar.style.animation="snackbarDisappear 0.3s 8s forwards";
+      snackbar.onanimationend = function() {
       snackbar.remove()
-    }
+      }
   }
 }
 
@@ -172,7 +169,7 @@ class NeonProgressRing extends HTMLElement  {
       super();
       var ProgressRingSize = this.getAttribute('data-size')
       if(ProgressRingSize === null) {
-        ProgressRingSize = '40'
+          ProgressRingSize = '40'
       }
       var ProgressRingHTML = `
       <svg width="${ProgressRingSize}" height="${ProgressRingSize}" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,38 +184,40 @@ class NeonProgressRing extends HTMLElement  {
       </svg>    
       `
       this.innerHTML = ProgressRingHTML;
-}}
+  }
+}
 class NeonCheckbox extends HTMLElement  {  
   constructor() {
       super();
       var State = this.getAttribute('checked')
       if(State == '') {
-        State = 'checked'
+          State = 'checked'
       }
       var CheckboxHTML = `
       <label class="checkbox">
-        <input type="checkbox" ${State}>
-        <span class="checkmark" tabindex="1">
+          <input type="checkbox" ${State}>
+          <span class="checkmark" tabindex="1">
           <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="path" d="M15.2733 0.830727L4.9431 11.1693L0.726807 6.92629" stroke="var(--Alt)" stroke-width="1.45135" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="path" d="M15.2733 0.830727L4.9431 11.1693L0.726807 6.92629" stroke="var(--Alt)" stroke-width="1.45135" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </span>
+          </span>
       </label>
       `
       this.innerHTML = CheckboxHTML;
-}}
+  }
+}
 class NeonSwitch extends HTMLElement  {  
   constructor() {
       super();
       var State = this.getAttribute('checked')
       if(State == '') {
-        State = 'checked'
+          State = 'checked'
       }
       var SwitchHTML = `
       <label class="toggleSwitch">
-        <input type="checkbox" ${State}>
-        <span class="switch" tabindex="1">
-        </span>
+          <input type="checkbox" ${State}>
+          <span class="switch" tabindex="1">
+          </span>
       </label>
       `
       this.innerHTML = SwitchHTML;
@@ -227,14 +226,23 @@ class NeonSwitch extends HTMLElement  {
 class NeonSlider extends HTMLElement  {  
   constructor() {
       super();
-      var val = this.getAttribute('val')
+      var id = this.getAttribute('data-sliderID')
+      var min = this.getAttribute('min')
+      var max = this.getAttribute('max')
+      var value = this.getAttribute('value')
+      
       var SliderHTML = `
       <div class="sliderContainer">
-        <input class="slider" id="${val}" type="range">
+          <input class="slider" id="${id}" min="${min}" value="${value}" max="${max}" type="range">
       </div>
       `
       this.innerHTML = SliderHTML;
-}}
+      this.style.setProperty('--SliderValue', `${this.querySelector('input').value}%`)
+      this.addEventListener("change", function() {
+          this.style.setProperty('--SliderValue', `${this.querySelector('input').value}%`)
+      }, false);        
+  }
+}
 /*                                       */
 customElements.define('neon-checkbox', NeonCheckbox);
 customElements.define('neon-progressring', NeonProgressRing);
