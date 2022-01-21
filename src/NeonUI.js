@@ -1,7 +1,9 @@
-window.onload = function() {
-  toggleTheme()
-  AttachContextMenu('body', 'menu')
-}
+/* 
+    NeonUI.js Preview v0.5.11
+    This is the developement version. Use the Minified version in your app.
+*/
+
+window.addEventListener('load', (e) => {toggleTheme()});
 
 //Context menu
 function AttachContextMenu(element, id) {
@@ -145,6 +147,7 @@ function toggleClass(element, class1, class2) {
   let classes = classArray.join(' ');
   document.querySelector(element).setAttribute('class', classes)
 }
+
 function generateSnackbar(content, buttonText, buttonID) {
   let snackbar = document.createElement('div')
   snackbar.classList.add('snackbar')
@@ -161,6 +164,17 @@ function generateSnackbar(content, buttonText, buttonID) {
       snackbar.remove()
       }
   }
+}
+
+//Toggle the visibility of an element
+function toggleVisibility(e) {
+    let element = document.querySelector(e)
+    if(getComputedStyle(element, null).display == 'none') {
+      e.style.display = 'flex'
+    }
+    else {
+      e.style.display = 'none'
+    }
 }
 
 //Web components

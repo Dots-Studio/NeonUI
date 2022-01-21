@@ -1,10 +1,9 @@
 /* 
-    NeonUI Preview v0.51
+    NeonUI Preview v0.5.11
     This is the developement version. Use the Minified version in your app.
 */
 
 *{
-    display: block;
     margin: 0;
     padding: 0;
 	box-sizing: border-box;
