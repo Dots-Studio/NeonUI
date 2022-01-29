@@ -1,5 +1,5 @@
 /* 
-    NeonUI.js Preview v0.5.11
+    NeonUI.js Preview 0.5.2
     This is the developement version. Use the Minified version in your app.
 */
 
@@ -170,10 +170,10 @@ function generateSnackbar(content, buttonText, buttonID) {
 function toggleVisibility(e) {
     let element = document.querySelector(e)
     if(getComputedStyle(element, null).display == 'none') {
-      e.style.display = 'flex'
+        element.style.display = 'flex'
     }
     else {
-      e.style.display = 'none'
+        element.style.display = 'none'
     }
 }
 

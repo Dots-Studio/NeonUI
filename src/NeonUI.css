@@ -1,9 +1,9 @@
 /* 
-    NeonUI Preview v0.5.11
+    NeonUI Preview v0.5.2
     This is the developement version. Use the Minified version in your app.
 */
 
-*{
+* {
     margin: 0;
     padding: 0;
 	box-sizing: border-box;
@@ -12,7 +12,7 @@
     font-size: 16px;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: color 0.1s ease, background-color 0.1s ease;
+    transition: color 0.1s ease, background-color 0.1s, box-shadow 0.3s;
 }
 *:focus {
     outline: 1.5px solid var(--AccentColor);
@@ -218,6 +218,20 @@ button:active, .btn:active{transform: scale(0.95);}
     text-decoration: none;
     cursor: pointer;
 }
+.mainButton, .mainButtonAlt, .mainButtonIcon {
+    border: none;
+    padding: 16px 48px;
+    border-radius: 100vw;
+    background-color: var(--Alt);
+    color: var(--TextBase);
+}
+.mainButton:hover, .mainButtonIcon:hover {box-shadow: var(--ShadowMedium);}
+.mainButtonIcon {padding: 16px;}
+.mainButtonAlt {
+    background-color: var(--Base);
+    color: var(--Alt);
+}
+.mainButtonAlt:hover {box-shadow: var(--ShadowHeavy);}
 
 /* Text input */
 input[type="text"], textarea {
@@ -287,7 +301,7 @@ main {
     background-color: var(--ControlBase1);
     border-radius: var(--RoundCorner2);
     padding: 8px 12px;
-    transition: box-shadow 0.3s, background-color 0.2s;
+    transition: background-color 0.2s;
     gap: 8px;
     border: 1.5px solid var(--ControlBase2);
 }
@@ -378,7 +392,6 @@ main {
     border-radius: var(--RoundCorner2);
     padding: 16px 8px;
     backdrop-filter: var(--BlurLight);
-    transition: box-shadow 0.3s;
 }
 .Card:hover {
     background-color: var(--Alt);
