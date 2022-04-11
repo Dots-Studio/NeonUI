@@ -1,3 +1,5 @@
+🟡  **This project is still developed but no updates will currently come.**
+
 # NeonUI
 ![Illustration](ReadMe/Header.png)
 NeonUI is a lightweight, clean & modern UI library for the web.
@@ -20,4 +22,4 @@ In order to customize them:
 ## Contributing
 You can contribute at any time by creating issues and pull requests.
 ## Need help?
-You can get more help for NeonUI in our [Discord Server](https://discord.gg/MjpRQGtq).
+You can get more help for NeonUI in our [Discord Server](https://discord.gg/ayD26c9vT9).
