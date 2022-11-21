@@ -1,4 +1,4 @@
-🟡  **This project is still developed but no updates will currently come.**
+> 🔴  **This project is discontinued. Check out [MonoUI](https://github.com/Dots-Studio/MonoUI) for a replacement made with Web Components, more powerful styling and other great new things.**
 
 # NeonUI
 ![Illustration](ReadMe/Header.png)
@@ -20,6 +20,6 @@ In order to customize them:
 2. Add the ::Root pseudo-class
 3. Add your new variable values to the ::Root
 ## Contributing
-You can contribute at any time by creating issues and pull requests.
+~~You can contribute at any time by creating issues and pull requests.~~
 ## Need help?
 You can get more help for NeonUI in our [Discord Server](https://discord.gg/ayD26c9vT9).
